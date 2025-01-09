@@ -14,9 +14,9 @@ pipeline {
                 sh 'terraform init'
             }
         }
-        stage('Create test workspace') {
+        stage('Switch to test workspace') {
             steps {
-                sh 'terraform workspace new test'
+                sh 'terraform workspace select test'
             }
         }
         stage('Plan terraform') {
