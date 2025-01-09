@@ -11,7 +11,7 @@ pipeline {
         }
         stage('Initialize Terraform') {
             steps {
-                sh 'terraform init'
+                sh 'terraform init -reconfigure'
             }
         }
         stage('Create test workspace') {
