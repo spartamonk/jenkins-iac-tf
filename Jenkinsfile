@@ -30,6 +30,7 @@ pipeline {
                     }
             }
         }
+        }
         stage('Plan terraform') {
             steps {
                 sh 'terraform plan -var-file=env_vars/test.tfvars -out=tfplan'
