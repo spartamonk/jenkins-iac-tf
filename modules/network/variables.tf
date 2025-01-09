@@ -1,6 +1,7 @@
 variable "vpc_cidr" {
   type = string
 }
+
 variable "subnets" {
   type = map(object({
     cidr      = string
@@ -8,3 +9,4 @@ variable "subnets" {
     az        = number
   }))
 }
+

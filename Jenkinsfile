@@ -33,13 +33,13 @@ pipeline {
         }
         stage('Plan terraform') {
             steps {
-                sh 'terraform plan -var-file=env_vars/test.tfvars -out=tfplan'
+                sh 'terraform plan -var-file=/modules/env_vars/test.tfvars -out=tfplan'
             }
         }
         stage('Apply terraform') {
             steps{
                 input message: "Approve deployment?", ok: "Deploy"
-                sh 'terraform apply -var-file=env_vars/test.tfvars tfplan'
+                sh 'terraform apply -var-file=/modules/env_vars/test.tfvars tfplan'
             }
         }
     }
