@@ -6,7 +6,7 @@ pipeline {
     stages {
         stage('Checkout project') {
             steps {
-                git branch: 'main', url: 'https://github.com/spartamonk/new-jenkins-terraform.git' 
+                git branch: 'main', url: 'https://github.com/spartamonk/jenkins-iac-tf.git' 
             }
         }
         stage('Initialize Terraform') {
