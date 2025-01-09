@@ -2,6 +2,7 @@ pipeline {
     agent any
     environment {
         AWS_REGION = 'us-east-1'
+        WORKSPACE_NAME = 'test'
     }
     stages {
         stage('Checkout project') {
@@ -16,7 +17,17 @@ pipeline {
         }
         stage('Switch to test workspace') {
             steps {
-                sh 'terraform workspace select test'
+                script {
+                    def workspaceExists = sh(
+                        script: "terraform workspace list | grep -q ${WORKSPACE_NAME}",
+                        returnStatus: true
+                    ) == 0
+
+                    if (!workspaceExists) {
+                        sh "terraform workspace new ${WORKSPACE_NAME}"
+                    } else {
+                        sh "terraform workspace select ${WORKSPACE_NAME}"
+                    }
             }
         }
         stage('Plan terraform') {
