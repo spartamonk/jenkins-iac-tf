@@ -11,7 +11,7 @@ pipeline {
         }
         stage('Initialize Terraform') {
             steps {
-                sh 'terraform init -reconfigure'
+                sh 'terraform init'
             }
         }
         stage('Create test workspace') {
@@ -21,7 +21,7 @@ pipeline {
         }
         stage('Plan terraform') {
             steps {
-                sh 'terraform plan -out=tfplan'
+                sh 'terraform plan -var-file=/env_vars/test.tfvars -out=tfplan'
             }
         }
         stage('Apply terraform') {
