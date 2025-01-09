@@ -4,7 +4,6 @@ variable "vpc_cidr" {
 
 variable "subnets" {
   type = map(object({
-    cidr      = string
     public_ip = bool
     az        = number
   }))
