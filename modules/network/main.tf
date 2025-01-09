@@ -21,7 +21,7 @@ resource "aws_subnet" "subnets" {
 }
 
 locals {
-  has_public_subnet = anytrue(flatten([for _, subnet in var.subnets : subnet[*].map_public_ip_on_launch]))
+  has_public_subnet = anytrue(flatten([for _, subnet in var.subnets : subnet[*].public_ip]))
   pubic_subnet_id = try([for _,subnet in aws_subnet.subnets : subnet.id if subnet.map_public_ip_on_launch][0], null)
   private_subnet_id = try([for _,subnet in aws_subnet.subnets : subnet.id if subnet.map_public_ip_on_launch][0], null)
 }
